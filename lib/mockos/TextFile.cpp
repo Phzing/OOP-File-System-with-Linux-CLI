@@ -1,10 +1,11 @@
 #include "mockos/TextFile.h"
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 TextFile::TextFile(string n) {
-	name = n;
+	this->name = n;
 }
 
 unsigned int TextFile::getSize() {

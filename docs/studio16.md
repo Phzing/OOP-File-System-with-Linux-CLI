@@ -12,3 +12,11 @@ overwritten in the inherited classes.
 a. This is interface inheritance, since no implimentation was inherited.
 b. Private, since we only want to access those variables within the text file class.  COME BACK
 
+4. To test, we made an object and passed it a vector<char> populated with "hello" using write(). Then, we tried read(), and 
+saw "hello" printed out to us.
+
+5. To do this, we swtitched the type of the TextFile from type TextFile to type AbstractFile and then tried the same thing.
+
+6. Test file passed
+
+
