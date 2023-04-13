@@ -12,7 +12,6 @@ public:
 	virtual int write(vector<char>) override;
 	virtual int append(vector<char>) override;
 	virtual void read() override;
-
 private:
 	string name;
 	vector<char> contents;
