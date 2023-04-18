@@ -34,13 +34,13 @@ int SimpleFileSystem::createFile(string filename) {
 	dotPos++;
 	filetype = filename.substr(dotPos);
 	if (filetype.compare("txt") == 0) {
-		TextFile tf(filename);
+		TextFile tf = TextFile(filename);
 		addFile(filename, &tf);
 		return 0; //success
 	}
 	else if (filetype.compare("img") == 0) {
-		ImageFile tf(filename);
-		addFile(filename, &tf);
+		ImageFile imgf = ImageFile(filename);
+		addFile(filename, &imgf);
 		return 0; //success
 	}
 	return -5; //File not created FIX HARDCODE

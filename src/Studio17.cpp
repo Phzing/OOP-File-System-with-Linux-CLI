@@ -18,14 +18,23 @@ int main(int argc, char* argv[]) {
 	}
 	myFile->write(v);
 	myFile->read();
+
+
 	SimpleFileSystem sfh;
 	sfh.addFile(myFile->getName(), myFile);
-	sfh.createFile("hello.img");
+	int y = sfh.createFile("hello.txt");
+	//cout << "y: " << y << endl;
 	AbstractFile* af = sfh.openFile("aaa");
 	af->read();
-	AbstractFile* af2 = sfh.openFile("hello");
-	af2->write(v);
-	af2->read();
+	sfh.closeFile(af);
+	int x = sfh.deleteFile("aaa");
+
+	//cout << "x: " << x << endl;
+	string filename = "hello.txt";
+	AbstractFile* af2 = sfh.openFile(filename);
+	cout << "af2: " << af2 << endl;
+	//af2->write(v);
+	//af2->read();
 
 	return 0;
 }
