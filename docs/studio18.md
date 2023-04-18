@@ -10,4 +10,8 @@ other classes. It will be beneficial to remove this dependency.
 for each different type of file. It also maintains the "singleton" responsibility principle by removing SimpleFileSytem's
 responsibility for creating files and allows it to just manage them. 
 
-4. Testing incomplete
+4. Tested by adding both types of defined files, adding them, deleting them, opening them, and closing them.
+
+5. It only depends on the AbstractFile interface.
+
+6. Passes unit tests!

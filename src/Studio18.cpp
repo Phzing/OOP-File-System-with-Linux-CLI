@@ -13,8 +13,15 @@ int main(int argc, char* argv[]) {
 	AbstractFileSystem* system = new SimpleFileSystem; //maybe 
 	AbstractFileFactory* factory = new SimpleFileFactory;
 	AbstractFile* temp = factory->createFile("hello.txt");
-	cout << "temp: " << temp << endl;
+	AbstractFile* temp2 = factory->createFile("hello.img");
 	system->addFile("hello.txt", temp);
+	system->openFile("hello.txt");
+	system->closeFile(temp);
+	system->deleteFile("hello.txt");
+	system->addFile("hello.img", temp2);
+	system->openFile("hello.img");
+	system->closeFile(temp2);
+	system->deleteFile("hello.img");
 	return 0;
 
 }
