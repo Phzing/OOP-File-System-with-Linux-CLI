@@ -8,11 +8,10 @@ using namespace std;
 
 class SimpleFileSystem : public AbstractFileSystem {
 public:
-	virtual int addFile(string filename, AbstractFile* af);
-	virtual int createFile(string filename);
-	virtual int deleteFile(string filename);
-	virtual AbstractFile* openFile(string filename);
-	virtual int closeFile(AbstractFile* af);
+	virtual int addFile(string filename, AbstractFile* af) override;
+	virtual int deleteFile(string filename) override;
+	virtual AbstractFile* openFile(string filename) override;
+	virtual int closeFile(AbstractFile* af) override;
 private:
 	map<string, AbstractFile*> files;
 	set<AbstractFile*> openFiles;

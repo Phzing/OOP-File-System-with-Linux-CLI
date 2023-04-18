@@ -1,4 +1,5 @@
 # Studio 17
+1. Zach Hoffman, Jillian Tarlowe, Geoffrey Lien
 
 2. Tested functionality using the example input character vector provided. Result looked as expected:
 

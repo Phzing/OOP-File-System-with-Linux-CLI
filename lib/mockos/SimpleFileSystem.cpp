@@ -22,6 +22,7 @@ int SimpleFileSystem::addFile(string filename, AbstractFile* af) {
 	return 0; //success
 }
 
+/*
 int SimpleFileSystem::createFile(string filename) {
 	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
 		if (it->first.compare(filename) == 0) {
@@ -45,6 +46,7 @@ int SimpleFileSystem::createFile(string filename) {
 	}
 	return -5; //File not created FIX HARDCODE
 }
+*/
 
 AbstractFile* SimpleFileSystem::openFile(string filename) {
 	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
