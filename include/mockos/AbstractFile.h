@@ -10,4 +10,5 @@ public:
 	virtual int append(vector<char>) = 0;
 	virtual unsigned int getSize() = 0;
 	virtual string getName() = 0;
+	virtual ~AbstractFile() = default;
 };
