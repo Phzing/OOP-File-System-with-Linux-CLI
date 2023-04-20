@@ -11,7 +11,10 @@ ImageFile::ImageFile(string n) {
 }
 
 unsigned int ImageFile::getSize() {
-	//return contents.size();
+	return contents.size();
+}
+
+unsigned int ImageFile::getDimension() {
 	return Size;
 }
 

@@ -13,6 +13,7 @@ public:
 	virtual int append(vector<char>) override;
 	virtual vector<char> read() override;
 	virtual void accept(AbstractFileVisitor*) override;
+	unsigned int getDimension();
 private:
 	string name;
 	vector<char> contents;
