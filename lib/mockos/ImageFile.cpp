@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "mockos/AbstractFileVisitor.h"
 using namespace std;
 
 ImageFile::ImageFile(string n) {
@@ -10,7 +11,8 @@ ImageFile::ImageFile(string n) {
 }
 
 unsigned int ImageFile::getSize() {
-	return contents.size();
+	//return contents.size();
+	return Size;
 }
 
 string ImageFile::getName() {
@@ -37,14 +39,10 @@ int ImageFile::append(vector<char> v) {
 	return -2; // FIX HARDCODE (functionality not supported by this file type)
 }
 
-void ImageFile::read() {
-	for (int y = (int)Size - 1; y >= 0; y--) {
-		for (int x = 0; x < (int)Size; x++) {
-			cout << contents[y * (int)Size + x];
-		}
-		cout << endl;
-	}
-	cout << endl;
+vector<char> ImageFile::read() {
+	return this->contents;
 }
 
-
+void ImageFile::accept(AbstractFileVisitor* afv) {
+	afv->visit_ImageFile(this);
+}

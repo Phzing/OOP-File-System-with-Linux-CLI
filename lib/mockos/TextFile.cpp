@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "mockos/AbstractFileVisitor.h"
 using namespace std;
 
 TextFile::TextFile(string n) {
@@ -28,10 +29,12 @@ int TextFile::append(vector<char> v) {
 	return 0; // success
 }
 
-void TextFile::read() {
-	for (int i = 0; i < contents.size(); i++) {
-		cout << contents[i];
-	}
-	cout << endl;
+vector<char> TextFile::read() {
+	return contents;
 }
+
+void TextFile::accept(AbstractFileVisitor* afv) {
+	afv->visit_TextFile(this);
+}
+
 

@@ -11,7 +11,8 @@ public:
 	virtual string getName() override;
 	virtual int write(vector<char>) override;
 	virtual int append(vector<char>) override;
-	virtual void read() override;
+	virtual vector<char> read() override;
+	virtual void accept(AbstractFileVisitor*) override;
 private:
 	string name;
 	vector<char> contents;
