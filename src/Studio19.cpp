@@ -4,6 +4,7 @@
 #include "mockos/ImageFile.h"
 #include "mockos/TextFile.h"
 #include "mockos/BasicDisplayVisitor.h"
+#include "mockos/MetadataDisplayVisitor.h"
 
 using namespace std;
 
@@ -35,8 +36,8 @@ int main(int argc, char* argv[]) {
 	}
 	cout << endl;
 	*/
-	BasicDisplayVisitor displayVisitor;
-	myFile->accept(&displayVisitor);
+	MetadataDisplayVisitor MetadataDisplayVisitor;
+	myFile->accept(&MetadataDisplayVisitor);
 	//myFile2->accept(&displayVisitor);
 
 	return 0;
