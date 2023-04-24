@@ -43,7 +43,7 @@ int PasswordProxy::write(vector<char> v){
         cout << "wrote password" << endl;
         return this->fileptr->write(v);
     }
-    return -1; //fix hardcode
+    return -1; //fix hardcode new int needed instead of -1
 }
 
 int PasswordProxy::append(vector<char> v){
@@ -51,7 +51,7 @@ int PasswordProxy::append(vector<char> v){
     if (this->checkPass(input) == true){
         return this->fileptr->append(v);
     }
-    return -1; //fix hardcode
+    return -1; //fix hardcode new int needed instead of -1
 }
 
 unsigned int PasswordProxy::getSize(){
