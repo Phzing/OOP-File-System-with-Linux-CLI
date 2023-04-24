@@ -28,8 +28,10 @@ PasswordProxy:: ~PasswordProxy(){
 
 vector<char> PasswordProxy:: read(){
     string input = passwordPrompt();
+    //cout << "Password gotten: " << input << endl;
     if (this->checkPass(input) == true){
-        //todo: return read value
+        //cout << "passwords match!" << endl;
+        return this->fileptr->read();
     }
     vector<char> empty;
     return empty;
@@ -38,7 +40,8 @@ vector<char> PasswordProxy:: read(){
 int PasswordProxy::write(vector<char> v){
     string input = passwordPrompt();
     if (this->checkPass(input) == true) {
-        //todo: return write value
+        cout << "wrote password" << endl;
+        return this->fileptr->write(v);
     }
     return -1; //fix hardcode
 }
@@ -46,23 +49,23 @@ int PasswordProxy::write(vector<char> v){
 int PasswordProxy::append(vector<char> v){
     string input = passwordPrompt();
     if (this->checkPass(input) == true){
-        //todo: return append value
+        return this->fileptr->append(v);
     }
     return -1; //fix hardcode
 }
 
 unsigned int PasswordProxy::getSize(){
-    return this->getSize();
+    return this->fileptr->getSize();
 }
 
 string PasswordProxy::getName(){
-    return this->getName();
+    return this->fileptr->getName();
 }
 
 void PasswordProxy::accept(AbstractFileVisitor* afv){
     string input = passwordPrompt();
     if (this->checkPass(input) == true){
-        //todo: return accept value
+        return this->fileptr->accept(afv);
     }
 }
 

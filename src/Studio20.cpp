@@ -13,15 +13,21 @@ int main(int argc, char* argv[]) {
     cout << "here" << endl;
     AbstractFile *myFile = new ImageFile("aaa");
     //the password for this file will be "password"
-    PasswordProxy *proxy = new PasswordProxy(myFile, "password");
-    vector<char> contents = proxy->read();
-
+    vector<char> contents = myFile->read();
     for (int i = 0; i < 5; ++i) {
         contents.push_back('X');
         contents.push_back(' ');
     }
     contents.push_back('3');
-    proxy->write(contents);
+    myFile->write(contents);
+    PasswordProxy *proxy = new PasswordProxy(myFile, "password");
+    contents = proxy->read();
+    cout << "Contents:";
+    for (int i = 0; i < contents.size(); i++) {
+        cout << contents[i];
+    }
+    cout << endl;
+    
 
     MetadataDisplayVisitor MetadataDisplayVisitor;
     proxy->accept(&MetadataDisplayVisitor);
