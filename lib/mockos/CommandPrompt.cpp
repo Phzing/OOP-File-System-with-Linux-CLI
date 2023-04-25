@@ -1,5 +1,6 @@
 #include "mockos/CommandPrompt.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -38,22 +39,56 @@ string CommandPrompt:: prompt(){
     cout<< endl;
     cout<< "$  ";
     cin>>input;
-    //coded wrong, need to use getline method
     return input;
 }
 
 int CommandPrompt:: run(){
     bool done = false;
-    while(done == false){
+    while(done == false) {
         string input = prompt();
-        if(input == "q"){
+        istringstream iss(input);
+        if (input == "q") {
             return -1; //fix hardcode new int needed instead of -1 (quit)
-        }
-        else if(input == "help"){
+        } else if (input == "help") {
             listCommands();
         }
-        else if(input == ""){
-
+        bool space = false;
+        for (int i = 0; i < input.size(); i++) {
+            if (input[i] == ' ') {
+                space = true;
+            }
+        }
+        if (space == false) {
+            if (commands.find(input) != commands.end()) {
+                if (commands.find(input)->second->execute("") != 0) {
+                    cout << "Command failed " << endl;
+                }
+            } else {
+                cout << "Command does not exist" << endl;
+            }
+        } else {
+            istringstream iss(input);
+            string word1;
+            iss >> word1;
+            if (word1 == "help") {
+                string word2;
+                iss >> word2;
+                if (commands.find(word2) != commands.end()) {
+                    commands.find(word2)->second->displayInfo();
+                } else {
+                    cout << "Command does not exist" << endl;
+                }
+            } else {
+                if (commands.find(word1) != commands.end()) {
+                    string remString;
+                    getline(iss, remString);
+                    if (commands.find(word1)->second->execute(remString) != 0) {
+                        cout << "Command failed" << endl;
+                    }
+                } else {
+                    cout << "Command does not exist" << endl;
+                }
+            }
         }
     }
 }
