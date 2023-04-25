@@ -28,7 +28,7 @@ int CommandPrompt:: addCommand(std::string command, AbstractCommand* acPtr){
 
 void CommandPrompt:: listCommands(){
     for (const auto& command : commands) {
-        std::cout << command.second<< ": " << command.first << std::endl;
+        std::cout << command.first << std::endl;
     }
 }
 
@@ -38,7 +38,7 @@ string CommandPrompt:: prompt(){
             "for a list of commands, 'help <command name>' for details about a specific command name"<< endl;
     cout<< endl;
     cout<< "$  ";
-    cin>>input;
+    getline(cin, input);
     return input;
 }
 
@@ -49,44 +49,54 @@ int CommandPrompt:: run(){
         istringstream iss(input);
         if (input == "q") {
             return -1; //fix hardcode new int needed instead of -1 (quit)
-        } else if (input == "help") {
+        } 
+        else if (input == "help") {
             listCommands();
         }
-        bool space = false;
-        for (int i = 0; i < input.size(); i++) {
-            if (input[i] == ' ') {
-                space = true;
-            }
-        }
-        if (space == false) {
-            if (commands.find(input) != commands.end()) {
-                if (commands.find(input)->second->execute("") != 0) {
-                    cout << "Command failed " << endl;
+        else {
+            bool space = false;
+            for (int i = 0; i < input.size(); i++) {
+                if (input[i] == ' ') {
+                    space = true;
                 }
-            } else {
-                cout << "Command does not exist" << endl;
             }
-        } else {
-            istringstream iss(input);
-            string word1;
-            iss >> word1;
-            if (word1 == "help") {
-                string word2;
-                iss >> word2;
-                if (commands.find(word2) != commands.end()) {
-                    commands.find(word2)->second->displayInfo();
-                } else {
-                    cout << "Command does not exist" << endl;
-                }
-            } else {
-                if (commands.find(word1) != commands.end()) {
-                    string remString;
-                    getline(iss, remString);
-                    if (commands.find(word1)->second->execute(remString) != 0) {
-                        cout << "Command failed" << endl;
+            if (space == false) {
+                if (commands.find(input) != commands.end()) {
+                    if (commands.find(input)->second->execute("") != 0) {
+                        cout << "Command failed " << endl;
                     }
-                } else {
+                }
+                else {
                     cout << "Command does not exist" << endl;
+                }
+            }
+            else {
+                istringstream iss(input);
+                string word1;
+                iss >> word1;
+                if (word1 == "help") {
+                    string word2;
+                    iss >> word2;
+                    if (commands.find(word2) != commands.end()) {
+                        commands.find(word2)->second->displayInfo();
+                  
+                    }
+                    else {
+                        cout << "Command does not exist" << endl;
+                    }
+                }
+                else {
+                    if (commands.find(word1) != commands.end()) {
+                        string remString;
+                        getline(iss, remString);
+
+                        if (commands.find(word1)->second->execute(remString) != 0) {
+                            cout << "Command failed" << endl;
+                        }
+                    }
+                    else {
+                        cout << "Command does not exist" << endl;
+                    }
                 }
             }
         }
