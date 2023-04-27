@@ -89,6 +89,9 @@ int CommandPrompt:: run(){
                     if (commands.find(word1) != commands.end()) {
                         string remString;
                         getline(iss, remString);
+                        while (remString[0] == ' ') {
+                            remString.erase(remString.begin());
+                        }
 
                         if (commands.find(word1)->second->execute(remString) != 0) {
                             cout << "Command failed" << endl;

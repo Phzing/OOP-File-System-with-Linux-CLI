@@ -17,6 +17,10 @@ int main(int argc, char* argv[]) {
 	cmdPrompt->addCommand("touch", touchComm);
 	cmdPrompt->run();
 
+	AbstractFile* file = fileSystem.openFile("hello.txt"); // testing 'touch hello.txt':
+	if (file != nullptr) { cout << "'hello.txt' file created successfully" << endl; }
+	else { cout << "file is nullptr" << endl; }
+	return 0;
 }
 
 

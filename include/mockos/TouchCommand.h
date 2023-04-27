@@ -13,5 +13,5 @@ public:
 	TouchCommand(AbstractFileSystem* afs, AbstractFileFactory* aff);
 	//virtual ~AbstractCommand();
 	virtual void displayInfo() override;
-	virtual int execute(std::string command) override;
+	virtual int execute(std::string filename) override;
 };
