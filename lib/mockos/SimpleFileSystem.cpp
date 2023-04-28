@@ -90,4 +90,10 @@ int SimpleFileSystem::deleteFile(string filename) {
 	return -8; //File does not exist FIX HARDCODE
 }
 
-
+set<string> SimpleFileSystem::getFileNames() {
+	set<string> allFiles;
+	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
+		allFiles.insert(it->first);
+	}
+	return allFiles;
+}

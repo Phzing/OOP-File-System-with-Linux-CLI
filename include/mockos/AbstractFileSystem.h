@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "AbstractFile.h"
+#include <set>
 using namespace std;
 
 class AbstractFileSystem {
@@ -10,4 +11,5 @@ public:
 	virtual int deleteFile(string filename) = 0;
 	virtual AbstractFile* openFile(string filename) = 0;
 	virtual int closeFile(AbstractFile* af) = 0;
+	virtual set<string> getFileNames() = 0;
 };

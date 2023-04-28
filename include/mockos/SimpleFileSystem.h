@@ -12,6 +12,7 @@ public:
 	virtual int deleteFile(string filename) override;
 	virtual AbstractFile* openFile(string filename) override;
 	virtual int closeFile(AbstractFile* af) override;
+	virtual set<string> getFileNames() override;
 private:
 	map<string, AbstractFile*> files;
 	set<AbstractFile*> openFiles;
