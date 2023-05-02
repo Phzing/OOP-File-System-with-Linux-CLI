@@ -82,17 +82,18 @@ int SimpleFileSystem::closeFile(AbstractFile* af) {
 int SimpleFileSystem::deleteFile(string filename) {
 	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
 		if (it->first.compare(filename) == 0) {
-			for (set<AbstractFile*>::iterator itr = this->openFiles.begin(); itr != this->openFiles.end(); ++itr) {
-				if ((*itr)->getName().compare(filename) == 0) {
-					return -7; //File already open, couldn't be deleted FIX HARDCODE
-				}
-			}
-			delete it->second;
-			files.erase(filename);
-			return 0;
-		}
+            for (set<AbstractFile *>::iterator itr = this->openFiles.begin(); itr != this->openFiles.end(); ++itr) {
+                if ((*itr)->getName().compare(filename) == 0) {
+                    return -7; //File already open, couldn't be deleted FIX HARDCODE
+                }
+            }
+            delete it->second;
+            files.erase(filename);
+            return 0;
+        }
 	}
-	return -8; //File does not exist FIX HARDCODE
+    cout << "File does not exist" << endl;
+	return -8; //Fix Hardcode File Does not Exist
 }
 
 set<string> SimpleFileSystem::getFileNames() {
