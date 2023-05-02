@@ -14,15 +14,37 @@ void TouchCommand::displayInfo() {
 }
 
 int TouchCommand::execute(string command) {
-    AbstractFile* file = fileFact->createFile(command);
-    if (file == nullptr) {
-        return -1; //fix hardcode - no file created
+    bool space = false;
+    for (int i = 0; i < command.size(); i++) {
+        if (command[i] == ' ') {
+            space = true;
+        }
     }
-    int addFilereturn = fileSys->addFile(command, file);
-    if (addFilereturn == 0) {
-        return 0; //success
+    if(space == false) {
+        AbstractFile *file = fileFact->createFile(command);
+        if (file == nullptr) {
+            return -1; //fix hardcode - no file created
+        }
+        int addFilereturn = fileSys->addFile(command, file);
+        if (addFilereturn == 0) {
+            return 0; //success
+        }
+        delete file;
+        return -2; // FIX HARDCODE - file not added, deleted
     }
-    delete file;
-    return -2; // FIX HARDCODE - file not added, deleted
+    else{
+        istringstream iss(command);
+        string word1;
+        string remString;
+        string pass;
+        iss >> word1;
+        iss >> remString;
+        if (remString == "-p"){
+            cout << "What is the password?" << endl;
+            cin >> pass;
+            //TODO: implement password proxy creation with pass
+        }
+        return -1; //FIX HARDCODE Command does not exist
+    }
 }
 

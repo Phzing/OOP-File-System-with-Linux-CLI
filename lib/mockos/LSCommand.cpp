@@ -55,7 +55,8 @@ int LSCommand::execute(string command) {
             for (int i = fileType.size(); i <= 20; ++i) { //FIX HARDCODE (set maxFilenameLength = 20)
                 cout << " ";
             }
-            cout << filePointer->getSize() << endl;   
+            cout << filePointer->getSize() << endl;
+            fileSys->closeFile(filePointer);
         }
         return 0; // success (FIX HARDCODE)
     }
