@@ -37,11 +37,10 @@ string CommandPrompt:: prompt(){
     cout << "Please enter a valid command, 'q' to quit, 'help' \n"
             "For a list of commands, 'help <command name>' for details about a specific command name"<< endl;
     cout<< endl;
-    cin.clear();
     fflush(stdin);
     while(input == "") {
-        cout<< "$  " << flush;
-        getline(cin, input);
+        cout<< "$  " << flush; 
+        getline(cin >> ws, input);
     }
     return input;
 }
