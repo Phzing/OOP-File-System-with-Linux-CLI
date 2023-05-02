@@ -6,6 +6,7 @@
 #include "mockos/RemoveCommand.h"
 #include "mockos/LSCommand.h"
 #include "mockos/CommandPrompt.h"
+#include "mockos/CatCommand.h"
 
 using namespace std;
 
@@ -15,12 +16,14 @@ int main(int argc, char* argv[]) {
     AbstractCommand* touchComm = new TouchCommand(&fileSystem, &fileFactory);
     AbstractCommand* removeCommand = new RemoveCommand(&fileSystem);
     AbstractCommand* lsCommand = new LSCommand(&fileSystem);
+    AbstractCommand* catCommand = new CatCommand(&fileSystem);
     CommandPrompt* cmdPrompt = new CommandPrompt();
     cmdPrompt->setFileSystem(&fileSystem);
     cmdPrompt->setFileFactory(&fileFactory);
     cmdPrompt->addCommand("touch", touchComm);
     cmdPrompt->addCommand("rm", removeCommand);
     cmdPrompt->addCommand("ls", lsCommand);
+    cmdPrompt->addCommand("cat", catCommand);
     cmdPrompt->run();
     return 0;
 }
