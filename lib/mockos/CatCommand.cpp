@@ -53,6 +53,8 @@ int CatCommand::execute(string command) {
         getline(cin, currentLine);
     }
     if (currentLine == ":q") {
+        fileSys->closeFile(filePointer);
+        filePointer = 0;
         return 0; // success FIX HARDCODE
     }
     vector<char> appendingDataVec;
@@ -60,7 +62,13 @@ int CatCommand::execute(string command) {
         appendingDataVec.push_back(appendingData[i]);
     }
     if (remString == "-a") {
-        return filePointer->append(appendingDataVec);
+        int appendReturn = filePointer->append(appendingDataVec);
+        fileSys->closeFile(filePointer);
+        filePointer = 0;
+        return appendReturn;
     }
-    return filePointer->write(appendingDataVec);
+    int writeReturn = filePointer->write(appendingDataVec);
+    fileSys->closeFile(filePointer);
+    filePointer = 0;
+    return writeReturn;
 }
