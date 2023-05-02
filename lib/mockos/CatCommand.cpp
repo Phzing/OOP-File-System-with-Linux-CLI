@@ -58,8 +58,20 @@ int CatCommand::execute(string command) {
         return 0; // success FIX HARDCODE
     }
     vector<char> appendingDataVec;
-    for (int i = 0; i < appendingData.size(); i++) {
-        appendingDataVec.push_back(appendingData[i]);
+    string filetype;
+    bool atDot = false;
+    int dotPos = filename.find(".");
+    dotPos++;
+    filetype = filename.substr(dotPos);
+    if (filetype.compare("img") == 0) {
+        for (int i = 0; i < appendingData.size()-1; i++) {
+            appendingDataVec.push_back(appendingData[i]);
+        }
+    }
+    else {
+        for (int i = 0; i < appendingData.size(); i++) {
+            appendingDataVec.push_back(appendingData[i]);
+        }
     }
     if (remString == "-a") {
         int appendReturn = filePointer->append(appendingDataVec);
