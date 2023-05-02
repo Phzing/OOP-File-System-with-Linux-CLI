@@ -35,10 +35,14 @@ void CommandPrompt:: listCommands(){
 string CommandPrompt:: prompt(){
     string input;
     cout << "Please enter a valid command, 'q' to quit, 'help' \n"
-            "for a list of commands, 'help <command name>' for details about a specific command name"<< endl;
+            "For a list of commands, 'help <command name>' for details about a specific command name"<< endl;
     cout<< endl;
-    cout<< "$  ";
-    getline(cin, input);
+    cin.clear();
+    fflush(stdin);
+    while(input == "") {
+        cout<< "$  " << flush;
+        getline(cin, input);
+    }
     return input;
 }
 

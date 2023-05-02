@@ -1,4 +1,5 @@
 #include "mockos/TouchCommand.h"
+#include "mockos/PasswordProxy.h"
 #include <iostream>
 #include <sstream>
 
@@ -42,7 +43,17 @@ int TouchCommand::execute(string command) {
         if (remString == "-p"){
             cout << "What is the password?" << endl;
             cin >> pass;
-            //TODO: implement password proxy creation with pass
+            AbstractFile *file = fileFact->createFile(word1);
+            if (file == nullptr) {
+                return -1; //fix hardcode - no file created
+            }
+            PasswordProxy * passwordFile = new PasswordProxy(file, pass);
+            int addFilereturn = fileSys->addFile(word1, passwordFile);
+            if (addFilereturn == 0) {
+                return 0; //success
+            }
+            delete file;
+            return -2; // FIX HARDCODE - file not added, deleted
         }
         return -1; //FIX HARDCODE Command does not exist
     }

@@ -12,8 +12,13 @@ using namespace std;
 int SimpleFileSystem::addFile(string filename, AbstractFile* af) {
 	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
 		if (it->second == af) {
+            cout << "File already exists" <<endl;
 			return -2; // file already exists FIX HARDCODE
 		}
+        else if (it->first == af->getName()){
+            cout << "File already exists" << endl;
+            return -4; //filename already exists FIX HARDCODE
+        }
 	}
 	if (af == nullptr) {
 		return -3; // file is a nullptr FIX HARDCODE
