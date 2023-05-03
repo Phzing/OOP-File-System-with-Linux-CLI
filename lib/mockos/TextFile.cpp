@@ -38,3 +38,6 @@ void TextFile::accept(AbstractFileVisitor* afv) {
 }
 
 
+AbstractFile* TextFile::clone(string copyName) {
+	AbstractFile* copy = new TextFile(*this);
+}

@@ -14,7 +14,7 @@ public:
 	virtual vector<char> read() override;
 	virtual void accept(AbstractFileVisitor*) override;
 	unsigned int getDimension();
-	virtual AbstractFile* clone() override;
+	virtual AbstractFile* clone(string copyName) override;
 private:
 	string name;
 	vector<char> contents;
