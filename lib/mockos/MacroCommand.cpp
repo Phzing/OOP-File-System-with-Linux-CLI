@@ -1,3 +1,5 @@
+/*
+
 #pragma once
 #include <iostream>
 #include "mockos/MacroCommand.h"
@@ -28,3 +30,4 @@ void MacroCommand::addCommand(AbstractCommand* commandPtr) {
 void MacroCommand::setParseStrategy(AbstractParsingStrategy* ParsingStrategyPointer) {
     this->absParsStratPtr = ParsingStrategyPointer;
 }
+*/

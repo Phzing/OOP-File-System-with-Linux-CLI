@@ -69,4 +69,8 @@ void PasswordProxy::accept(AbstractFileVisitor* afv){
     }
 }
 
-
+AbstractFile* PasswordProxy::clone(string copyName) {
+    AbstractFile* filePointer = this->fileptr->clone(copyName);
+    AbstractFile* copy = new PasswordProxy(filePointer, this->password);
+    return copy;
+}

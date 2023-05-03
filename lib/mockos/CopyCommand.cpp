@@ -33,49 +33,11 @@ int CopyCommand::execute(string command) {
     
     AbstractFile* copy = filePointer->clone(copyName);
     int addFilereturn = fileSys->addFile(copy->getName(), copy);
+    fileSys->closeFile(filePointer);
+    filePointer = 0;
     if (addFilereturn == 0) {
         return 0; //success
     }
     delete copy; 
     return -3; // FIX HARDCODE file not added
 }
-
-/*
-bool space = false;
-    for (int i = 0; i < command.size(); i++) {
-        if (command[i] == ' ') {
-            space = true;
-        }
-    }
-    istringstream iss(command);
-    string filename;
-    string remString;
-    iss >> filename;
-    AbstractFile* filePointer = fileSys->openFile(filename);
-    if (filePointer == nullptr) {
-        cout << "file is nullptr" << endl;
-        return -1; // No file found in system
-    }
-    if (space) {
-        iss >> remString;
-        if (remString == "-d") {
-            vector<char> contents = filePointer->read();
-            for (int i = 0; i < contents.size(); i++) {
-                cout << contents[i];
-            }
-            cout << endl;
-            fileSys->closeFile(filePointer);
-            filePointer = 0;
-            return 0; //Success FIX HARDCODE
-        }
-        cout << "Invalid usage of ds" << endl;
-        fileSys->closeFile(filePointer);
-        filePointer = 0;
-        return -2; // FIX HARDCODE
-    }
-    BasicDisplayVisitor displayVisitor;
-    filePointer->accept(&displayVisitor);
-    fileSys->closeFile(filePointer);
-    filePointer = 0;
-    return 0; //Success FIX HARDCODE
-*/

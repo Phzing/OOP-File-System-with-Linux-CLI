@@ -52,11 +52,11 @@ void ImageFile::accept(AbstractFileVisitor* afv) {
 
 AbstractFile* ImageFile::clone(string copyName) {
 	copyName += ".img";
-	return new ImageFile(*this);
-	
-	/*
 	AbstractFile* copy = new ImageFile(copyName);
-	copy->write(this->contents);
+	vector<char> toWrite = this->contents;
+	toWrite.push_back(char(this->Size)+48);
+	int writeReturn = copy->write(toWrite);
+	//copy->write(this->contents);
 	return copy;
-	*/
+	
 }

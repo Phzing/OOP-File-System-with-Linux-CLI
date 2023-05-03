@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include "mockos/AbstractCommand.h"
 #include "mockos/AbstractParsingStrategy.h"
@@ -16,3 +17,4 @@ public:
     void addCommand(AbstractCommand* commandPtr);
     void setParseStrategy(AbstractParsingStrategy* ParsingStrategyPointer);
 };
+*/
