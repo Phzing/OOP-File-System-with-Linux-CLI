@@ -30,19 +30,9 @@ int CopyCommand::execute(string command) {
         cout << "incorrect usage of cp" << endl;
         return -2; // FIX HARDCODE Incorrect command usage
     }
-    string filetype;
-    bool atDot = false;
-    int dotPos = originalFilename.find(".");
-    dotPos++;
-    filetype = originalFilename.substr(dotPos);
-    if (filetype.compare("txt") == 0) {
-        copyName += ".txt";
-    }
-    else if (filetype.compare("img") == 0) {
-        copyName += ".img";
-    }
+    
     AbstractFile* copy = filePointer->clone(copyName);
-    int addFilereturn = fileSys->addFile(copyName, copy);
+    int addFilereturn = fileSys->addFile(copy->getName(), copy);
     if (addFilereturn == 0) {
         return 0; //success
     }

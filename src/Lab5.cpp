@@ -8,6 +8,7 @@
 #include "mockos/CommandPrompt.h"
 #include "mockos/CatCommand.h"
 #include "mockos/DisplayCommand.h"
+#include "mockos/CopyCommand.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ int main(int argc, char* argv[]) {
     AbstractCommand* lsCommand = new LSCommand(&fileSystem);
     AbstractCommand* catCommand = new CatCommand(&fileSystem);
     AbstractCommand* displayCommand = new DisplayCommand(&fileSystem);
+    AbstractCommand* copyCommand = new CopyCommand(&fileSystem);
     CommandPrompt* cmdPrompt = new CommandPrompt();
     cmdPrompt->setFileSystem(&fileSystem);
     cmdPrompt->setFileFactory(&fileFactory);
@@ -27,6 +29,7 @@ int main(int argc, char* argv[]) {
     cmdPrompt->addCommand("ls", lsCommand);
     cmdPrompt->addCommand("cat", catCommand);
     cmdPrompt->addCommand("ds", displayCommand);
+    cmdPrompt->addCommand("cp", copyCommand);
     cmdPrompt->run();
     return 0;
 }

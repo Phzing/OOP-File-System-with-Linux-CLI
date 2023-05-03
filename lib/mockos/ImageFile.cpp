@@ -50,6 +50,13 @@ void ImageFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_ImageFile(this);
 }
 
-AbstractFile* ImageFile::clone() {
+AbstractFile* ImageFile::clone(string copyName) {
+	copyName += ".img";
 	return new ImageFile(*this);
+	
+	/*
+	AbstractFile* copy = new ImageFile(copyName);
+	copy->write(this->contents);
+	return copy;
+	*/
 }
