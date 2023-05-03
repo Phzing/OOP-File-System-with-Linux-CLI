@@ -9,7 +9,7 @@ using namespace std;
 
 class MacroCommand : public AbstractCommand {
     vector<AbstractCommand*> commands;
-    AbstractParsingStrategy* absParsStratPtr;
+    AbstractParsingStrategy* absParsStratPtr{};
     AbstractFileSystem* fileSys;
 public:
     MacroCommand(AbstractFileSystem* afs);
