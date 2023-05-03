@@ -13,7 +13,7 @@ public:
 	virtual unsigned int getSize() override;
 	virtual string getName() override;
 	virtual void accept(AbstractFileVisitor*) override;
-
+	virtual AbstractFile* clone() override;
 private:
 	vector<char> contents;
 	string name;

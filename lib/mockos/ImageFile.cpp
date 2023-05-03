@@ -49,3 +49,7 @@ vector<char> ImageFile::read() {
 void ImageFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_ImageFile(this);
 }
+
+AbstractFile* ImageFile::clone() {
+	return new ImageFile(*this);
+}
