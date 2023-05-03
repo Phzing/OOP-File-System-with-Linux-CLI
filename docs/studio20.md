@@ -11,4 +11,4 @@ out results from read. Nothing was printed. Then, wrote a vector into the file a
 Read proxy again and printed results which showed the correct vector being printed. Then, created a MetadataDisplayVisitor object and 
 called accept on our proxy, passing the MetadataDisplayVisitor object and saw the contents printed to the terminal ostream.
 
-5. All unit tests pass
+5. All unit tests pass!

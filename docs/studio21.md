@@ -13,4 +13,4 @@ is desired (as well as its associated factory).
 4. Tried calling 'help', 'help touch', 'touch hello.txt', 'q' and then checking if hello.txt was opened
 successfully from the file system. All worked correctly.
 
-5.Test cases pass.
+5. Test cases pass!

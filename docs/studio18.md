@@ -12,6 +12,6 @@ responsibility for creating files and allows it to just manage them.
 
 4. Tested by adding both types of defined files, adding them, deleting them, opening them, and closing them.
 
-5. It only depends on the AbstractFile interface.
+5. It only depends on the AbstractFile interface at this point.
 
 6. Passes unit tests!

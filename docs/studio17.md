@@ -12,6 +12,6 @@ This way, we can define how different types of files should be interacted with, 
 names will always be the same since the interface is being inherited.
 
 4. In order to be able to make object's of new concrete file types, we would need to add code to SimpleFileSystem.cpp's
-createFile() function. Currently, this function will only create files of type imageFile and textFile.
+createFile() function. Currently, this function can only recognize and create files of type imageFile and textFile.
 
 5. Passes all of the unit tests!
