@@ -26,8 +26,9 @@ int main(int argc, char* argv[]) {
     MacroCommand* renameMacro = new MacroCommand(&fileSystem);
     renameMacro->addCommand(copyCommand);
     renameMacro->addCommand(removeCommand);
-    RenameParsingStrategy renamingParse;
-    renameMacro->setParseStrategy(&renamingParse);
+    AbstractParsingStrategy* renamingParse = new RenameParsingStrategy();
+    //AbstractParsingStrategy* renamingParse = new RenameParsingStrategy();
+    renameMacro->setParseStrategy(renamingParse);
     CommandPrompt* cmdPrompt = new CommandPrompt();
     cmdPrompt->setFileSystem(&fileSystem);
     cmdPrompt->setFileFactory(&fileFactory);
