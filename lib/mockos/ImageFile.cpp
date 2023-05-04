@@ -23,18 +23,18 @@ string ImageFile::getName() {
 }
 
 int ImageFile::write(vector<char> v) {
-	Size = (int)v[v.size()-1] - 48; // fix hardcode
+	char futureSize = (int)v[v.size()-1] - 48; // fix hardcode
 	char curr;
-	for (int i = 0; i < (int)Size*(int)Size; i++) {
+	vector<char> futureContents;
+	for (int i = 0; i < (int)futureSize*(int)futureSize; i++) {
 		curr = v[i];
 		if (curr != 'X' && curr != ' ') {
-			vector<char> zeroed;
-			contents = zeroed;
-			Size = 0;
 			return -1; //fix hardcode
 		}
-		contents.push_back(curr);
+		futureContents.push_back(curr);
 	}
+	Size = futureSize;
+	contents = futureContents;
 	return 0; // success
 }
 
