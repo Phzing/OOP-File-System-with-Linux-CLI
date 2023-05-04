@@ -11,6 +11,7 @@
 #include "mockos/CopyCommand.h"
 #include "mockos/MacroCommand.h"
 #include "mockos/RenameParsingStrategy.h"
+#include "mockos/TouchPlusCatParsingStrategy.h"
 
 using namespace std;
 
@@ -23,12 +24,19 @@ int main(int argc, char* argv[]) {
     AbstractCommand* catCommand = new CatCommand(&fileSystem);
     AbstractCommand* displayCommand = new DisplayCommand(&fileSystem);
     AbstractCommand* copyCommand = new CopyCommand(&fileSystem);
+
     MacroCommand* renameMacro = new MacroCommand(&fileSystem);
     renameMacro->addCommand(copyCommand);
     renameMacro->addCommand(removeCommand);
     AbstractParsingStrategy* renamingParse = new RenameParsingStrategy();
-    //AbstractParsingStrategy* renamingParse = new RenameParsingStrategy();
     renameMacro->setParseStrategy(renamingParse);
+
+    MacroCommand* touchAndCat = new MacroCommand(&fileSystem);
+    touchAndCat->addCommand(touchComm);
+    touchAndCat->addCommand(catCommand);
+    AbstractParsingStrategy* touchcatParse = new TouchPlusCatParsingStrategy();
+    touchAndCat->setParseStrategy(touchcatParse);
+
     CommandPrompt* cmdPrompt = new CommandPrompt();
     cmdPrompt->setFileSystem(&fileSystem);
     cmdPrompt->setFileFactory(&fileFactory);
@@ -39,6 +47,7 @@ int main(int argc, char* argv[]) {
     cmdPrompt->addCommand("ds", displayCommand);
     cmdPrompt->addCommand("cp", copyCommand);
     cmdPrompt->addCommand("rn", renameMacro);
+    cmdPrompt->addCommand("touchcat", touchAndCat);
     cmdPrompt->run();
     return 0;
 }
