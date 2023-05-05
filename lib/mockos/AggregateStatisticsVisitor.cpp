@@ -16,11 +16,30 @@
 
 using namespace std;
 
-void AggregateStatisticsVisitor::visit_ImageFile(ImageFile* imgf){
-	imgfiles++;
+void AggregateStatisticsVisitor::visit_ImageFile(ImageFile* imgf) {
+	imgFileCount++;
+	int dimension = imgf->getDimension();
+	totalImageBytes += dimension * dimension + 1;
 }
 
-void AggregateStatisticsVisitor::visit_TextFile(TextFile* tf){
-	txtfiles++;
+void AggregateStatisticsVisitor::visit_TextFile(TextFile* tf) {
+	txtFileCount++;
+	vector<char> contents = tf->read();
+	totalTextBytes += contents.size();
 }
 
+int AggregateStatisticsVisitor::getNumImgs() {
+	return imgFileCount;
+}
+
+int AggregateStatisticsVisitor::getNumTxts() {
+	return txtFileCount;
+}
+
+int AggregateStatisticsVisitor::getImageBytes() {
+	return totalImageBytes;
+}
+
+int AggregateStatisticsVisitor::getTextBytes() {
+	return totalTextBytes;
+}

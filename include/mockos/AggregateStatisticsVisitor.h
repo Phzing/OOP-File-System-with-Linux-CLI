@@ -16,10 +16,18 @@
 #include "TextFile.h"
 #include "ImageFile.h"
 
+using namespace std;
+
 class AggregateStatisticsVisitor : public AbstractFileVisitor {
+	int imgFileCount = 0;
+	int txtFileCount = 0;
+	int totalTextBytes = 0;
+	int totalImageBytes = 0;
 public:
 	virtual void visit_ImageFile(ImageFile*) override;
 	virtual void visit_TextFile(TextFile*) override;
-	int imgfiles = 0;
-	int txtfiles = 0;
+	int getNumImgs();
+	int getNumTxts();
+	int getTextBytes();
+	int getImageBytes();
 };

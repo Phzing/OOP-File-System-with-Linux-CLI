@@ -20,7 +20,8 @@ void BasicDisplayVisitor::visit_ImageFile(ImageFile* imgf) { //displays the cont
 	int size = imgf->getDimension();
 	for (int y = size - 1; y >= 0; y--) {
 		for (int x = 0; x < size; x++) {
-			cout << contents[y * size + x];
+			int i = y * size + x;
+			cout << contents[i];
 		}
 		cout << endl;
 	}

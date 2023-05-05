@@ -20,11 +20,6 @@ using namespace std;
 
 class AggregateStatsCommand : public AbstractCommand {
 	AbstractFileSystem* fileSys;
-	int numberTxtFiles;
-	int numberImgFiles;
-	int numberOpenFiles;
-	int totalCommands;
-	int totalSpace;
 public:
 	AggregateStatsCommand(AbstractFileSystem* afs);
 	virtual void displayInfo() override;

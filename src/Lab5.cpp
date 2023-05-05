@@ -12,6 +12,7 @@
 #include "mockos/MacroCommand.h"
 #include "mockos/RenameParsingStrategy.h"
 #include "mockos/TouchPlusCatParsingStrategy.h"
+#include "mockos/AggregateStatsCommand.h"
 
 using namespace std;
 
@@ -37,6 +38,9 @@ int main(int argc, char* argv[]) {
     AbstractParsingStrategy* touchcatParse = new TouchPlusCatParsingStrategy();
     touchAndCat->setParseStrategy(touchcatParse);
 
+   //AbstractCommand* aggStatsCommand = new AggregateStatsCommand(&fileSystem);
+    AbstractCommand* aggStatsCommand = new AggregateStatsCommand(&fileSystem);
+
     CommandPrompt* cmdPrompt = new CommandPrompt();
     cmdPrompt->setFileSystem(&fileSystem);
     cmdPrompt->setFileFactory(&fileFactory);
@@ -48,6 +52,7 @@ int main(int argc, char* argv[]) {
     cmdPrompt->addCommand("cp", copyCommand);
     cmdPrompt->addCommand("rn", renameMacro);
     cmdPrompt->addCommand("touchcat", touchAndCat);
+    cmdPrompt->addCommand("as", aggStatsCommand);
     cmdPrompt->run();
     return 0;
 }

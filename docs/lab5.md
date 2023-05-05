@@ -26,6 +26,14 @@ slight misunderstanding about what the pattern meant (thought we needed to use *
 -Problem with double '&' in command prompt after creating a password protected file (fixed)
 -Forgetting to close files at the end of functions, resulting in not being able to open/access 
 them in the future. 
+-In the extra credit, we accidentally called getSize() instead of getDimension(), but on the first trial
+realized this was incorrect and fixed it.
+
+For the extra credit, we got permission to implement and implemented a command and visitor pair that
+aggregates statistics about the files in the system. The statistics its aggregates are the total number
+of text files and image files, and the total number of bytes stored in all of the files (excluding the 
+filenames). To test these, we tried adding files with touch/touchcat and calling 'as' and looked at the 
+output, which all looked good. 
 
 Division of work:
 For studios, we all came to class to work together during the scheduled class times and 
