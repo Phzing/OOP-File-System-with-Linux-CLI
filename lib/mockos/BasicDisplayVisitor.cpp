@@ -27,7 +27,7 @@ void BasicDisplayVisitor::visit_ImageFile(ImageFile* imgf) { //displays the cont
 	cout << endl;
 }
 
-void BasicDisplayVisitor::visit_TextFile(TextFile * tf) { //displays the countents of a text file
+void BasicDisplayVisitor::visit_TextFile(TextFile * tf) { //displays the contents of a text file
 	vector<char> contents = tf->read();
 	for (int i = 0; i < contents.size(); i++) {
 		cout << contents[i];
