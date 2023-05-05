@@ -47,7 +47,7 @@ int ImageFile::write(vector<char> v) { //uses user input to correctly store the 
 	}
 	Size = futureSize;
 	contents = futureContents;
-	return 0; // success
+	return returns::SUCCESS;
 }
 
 int ImageFile::append(vector<char> v) {

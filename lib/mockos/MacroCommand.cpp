@@ -24,7 +24,7 @@ MacroCommand::MacroCommand(AbstractFileSystem* afs) {
 int MacroCommand::execute(string inputs){ //executes a macro command by calling each individual command given in order
     vector<string> inputVect = absParsStratPtr->parse(inputs); //calls a parsing strategy to parse the input provided
     for (int i = 0; i < commands.size(); i++){
-        if (commands[i]->execute(inputVect[i]) != 0){
+        if (commands[i]->execute(inputVect[i]) != returns::SUCCESS){
             return returns::COMMAND_FAIL; //a command failed
         }
     }

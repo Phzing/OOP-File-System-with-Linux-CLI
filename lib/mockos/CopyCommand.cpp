@@ -50,7 +50,7 @@ int CopyCommand::execute(string command) { //executes the copy command when prop
     fileSys->closeFile(filePointer);
     filePointer = 0;
 
-    if (addFilereturn == 0) { //checks that file was properly added to the system
+    if (addFilereturn == returns::SUCCESS) { //checks that file was properly added to the system
         return returns::SUCCESS;
     }
 

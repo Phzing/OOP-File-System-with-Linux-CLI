@@ -60,7 +60,7 @@ int TouchCommand::execute(string command) { //creates a file with the given name
             }
             PasswordProxy * passwordFile = new PasswordProxy(file, pass);
             int addFilereturn = fileSys->addFile(word1, passwordFile);
-            if (addFilereturn == 0) {
+            if (addFilereturn == returns::SUCCESS) {
                 return returns::SUCCESS;
             }
             delete file;
