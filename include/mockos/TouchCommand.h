@@ -1,4 +1,16 @@
 #pragma once
+
+/*
+* Lab 5
+* File: TouchCommand.h
+* Authors:
+* Geoffrey Lien g.lien@wustl.edu
+* Zach Hoffman hoffman.z@wustl.edu
+* Jillian Tarlowe jilliantarlowe@wustl.edu
+* Purpose: This file declares the TouchCommand class, which inherits the interface from AbstractCommand.
+* Its purpose is to create a file.
+*/
+
 #include "AbstractCommand.h"
 #include "AbstractFileSystem.h"
 #include "AbstractFileFactory.h"

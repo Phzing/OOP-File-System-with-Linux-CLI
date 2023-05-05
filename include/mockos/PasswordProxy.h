@@ -1,4 +1,15 @@
 #pragma once
+
+/*
+* Lab 5
+* File: PasswordProxy.h
+* Authors:
+* Geoffrey Lien g.lien@wustl.edu
+* Zach Hoffman hoffman.z@wustl.edu
+* Jillian Tarlowe jilliantarlowe@wustl.edu
+* Purpose: This file declares the class PasswordProxy, which allows the user to create a file that is protected with a password.
+*/
+
 #include "mockos/AbstractFile.h"
 #include <string>
 

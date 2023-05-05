@@ -1,3 +1,13 @@
+/*
+* Lab 5
+* File: SimpleFileSystem.cpp
+* Authors:
+* Geoffrey Lien g.lien@wustl.edu
+* Zach Hoffman hoffman.z@wustl.edu
+* Jillian Tarlowe jilliantarlowe@wustl.edu
+* Purpose: This file defines all functions for the simple file system.
+*/
+
 #include "mockos/SimpleFileSystem.h"
 #include "mockos/TextFile.h"
 #include "mockos/ImageFile.h"
@@ -7,57 +17,34 @@
 #include <vector>
 #include <map>
 #include <set>
+#include "mockos/enums.h"
+
 using namespace std;
 
-int SimpleFileSystem::addFile(string filename, AbstractFile* af) {
+int SimpleFileSystem::addFile(string filename, AbstractFile* af) { //adds a file into the map
 	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
-		if (it->second == af) {
+		if (it->second == af) { //ensures that the file doesn't already exist
             cout << "File already exists" <<endl;
-			return -2; // file already exists FIX HARDCODE
+			return returns::FILE_ALREADY_EXISTS; 
 		}
-        else if (it->first == af->getName()){
+        else if (it->first == af->getName()){ //ensures that the file doesn't already exist
             cout << "File already exists" << endl;
-            return -4; //filename already exists FIX HARDCODE
+            return returns::FILENAME_TAKEN; 
         }
 	}
-	if (af == nullptr) {
-		return -3; // file is a nullptr FIX HARDCODE
+	if (af == nullptr) { //ensures the given pointer is not a nullptr
+		return returns::NULL_PTR;
 	}
 	this->files.insert({ filename, af });
-	return 0; //success
+	return returns::SUCCESS;
 }
 
-/*
-int SimpleFileSystem::createFile(string filename) {
-	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
-		if (it->first.compare(filename) == 0) {
-			return -4; // filename already in use FIX HARDCODE
-		}
-	}
-	string filetype;
-	bool atDot = false;
-	int dotPos = filename.find(".");
-	dotPos++;
-	filetype = filename.substr(dotPos);
-	if (filetype.compare("txt") == 0) {
-		TextFile* tf = new TextFile(filename);
-		addFile(filename, tf);
-		return 0; //success
-	}
-	else if (filetype.compare("img") == 0) {
-		ImageFile* imgf = new ImageFile(filename);
-		addFile(filename, imgf);
-		return 0; //success
-	}
-	return -5; //File not created FIX HARDCODE
-}
-*/
 
-AbstractFile* SimpleFileSystem::openFile(string filename) {
-	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
+AbstractFile* SimpleFileSystem::openFile(string filename) { //opens a given file
+	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) { //check that file exists
 		if (it->first.compare(filename) == 0) {
 			for (set<AbstractFile*>::iterator itr = this->openFiles.begin(); itr != this->openFiles.end(); ++itr) {
-				if ((*itr)->getName().compare(filename) == 0) {
+				if ((*itr)->getName().compare(filename) == 0) { //checks that file is not already open
 					return nullptr;
 				}
 			}
@@ -68,35 +55,35 @@ AbstractFile* SimpleFileSystem::openFile(string filename) {
 	return nullptr;
 }
 
-int SimpleFileSystem::closeFile(AbstractFile* af) {
+int SimpleFileSystem::closeFile(AbstractFile* af) { //close an open file
 	bool foundFile = false;
 	for (set<AbstractFile*>::iterator itr = this->openFiles.begin(); itr != this->openFiles.end(); ++itr) {
 		if (*itr == af) {
-			openFiles.erase(af);
-			return 0; 
+			openFiles.erase(af); //remove file from open list
+			return returns::SUCCESS; 
 		}
 	}
-	return -6; //af not found in openFiles set FIX HARDCODE
+	return returns::FILE_NOT_OPEN; //file was not open, so cannot be closed
 }
 
-int SimpleFileSystem::deleteFile(string filename) {
-	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
+int SimpleFileSystem::deleteFile(string filename) { //deletes a file from the system
+	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) { //checks that file exists
 		if (it->first.compare(filename) == 0) {
             for (set<AbstractFile *>::iterator itr = this->openFiles.begin(); itr != this->openFiles.end(); ++itr) {
-                if ((*itr)->getName().compare(filename) == 0) {
-                    return -7; //File already open, couldn't be deleted FIX HARDCODE
+                if ((*itr)->getName().compare(filename) == 0) { //checks if file is open
+                    return returns::FILE_OPEN; //File already open, couldn't be deleted
                 }
             }
             delete it->second;
-            files.erase(filename);
-            return 0;
+            files.erase(filename); //deletes the file from the map
+            return returns::SUCCESS;
         }
 	}
     cout << "File does not exist" << endl;
-	return -8; //Fix Hardcode File Does not Exist
+	return returns::FILE_DOES_NOT_EXIST; //cannot delete a file that does not exist
 }
 
-set<string> SimpleFileSystem::getFileNames() {
+set<string> SimpleFileSystem::getFileNames() { 
 	set<string> allFiles;
 	for (map<string, AbstractFile*>::iterator it = this->files.begin(); it != this->files.end(); ++it) {
 		allFiles.insert(it->first);

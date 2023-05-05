@@ -1,4 +1,16 @@
 #pragma once
+
+/*
+* Lab 5
+* File: SimpleFileSystem.h
+* Authors:
+* Geoffrey Lien g.lien@wustl.edu
+* Zach Hoffman hoffman.z@wustl.edu
+* Jillian Tarlowe jilliantarlowe@wustl.edu
+* Purpose: This file declares the SimpleFileSystem class inherited from the AbstractFileSystem interface 
+* and declares all related functions and member variables.
+*/
+
 #include <vector>
 #include <string>
 #include "mockos/AbstractFileSystem.h"
