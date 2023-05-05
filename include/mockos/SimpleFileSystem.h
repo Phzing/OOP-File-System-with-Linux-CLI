@@ -16,6 +16,8 @@
 #include "mockos/AbstractFileSystem.h"
 #include <map>
 #include <set>
+#include "AggregateStatisticsVisitor.h"
+
 using namespace std;
 
 class SimpleFileSystem : public AbstractFileSystem {

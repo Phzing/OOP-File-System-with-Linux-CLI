@@ -12,6 +12,7 @@
 */
 
 #include "AbstractFileVisitor.h"
+#include "SimpleFileSystem.h"
 #include "TextFile.h"
 #include "ImageFile.h"
 
@@ -19,4 +20,6 @@ class AggregateStatisticsVisitor : public AbstractFileVisitor {
 public:
 	virtual void visit_ImageFile(ImageFile*) override;
 	virtual void visit_TextFile(TextFile*) override;
+	int imgfiles = 0;
+	int txtfiles = 0;
 };

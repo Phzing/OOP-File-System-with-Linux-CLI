@@ -17,9 +17,10 @@
 using namespace std;
 
 void AggregateStatisticsVisitor::visit_ImageFile(ImageFile* imgf){
-	
+	imgfiles++;
 }
 
 void AggregateStatisticsVisitor::visit_TextFile(TextFile* tf){
-
+	txtfiles++;
 }
+

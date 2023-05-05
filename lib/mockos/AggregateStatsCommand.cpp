@@ -9,6 +9,7 @@
 */
 
 #include "mockos/AggregateStatsCommand.h"
+#include "mockos/AggregateStatisticsVisitor.h"
 #include "mockos/PasswordProxy.h"
 #include "mockos/BasicDisplayVisitor.h"
 #include "mockos/SimpleFileSystem.h"
@@ -36,17 +37,25 @@ int AggregateStatsCommand::execute(std::string command){
     set<string> files = fileSys->getFileNames();
 
     if (command.size() == 0) { //checks that command was passed in properly
-
+        AggregateStatisticsVisitor asVisitor;
         for (set<string>::iterator it = files.begin(); it != files.end(); ++it) { //iterates through files
-            
-
-
+            istringstream iss(command);
+            string filename;
+            iss >> filename;
+            AbstractFile* filePointer = fileSys->openFile(filename);
+            filePointer->accept(&asVisitor);
+            fileSys->closeFile(filePointer);
+            filePointer = 0;
         }
+
+        numberImgFiles = asVisitor.imgfiles;
+        numberTxtFiles = asVisitor.txtfiles;
+
 
         cout << "Total number of files: " << numberTxtFiles + numberImgFiles << endl;
         cout << "Number of text files: " << numberTxtFiles << endl;
         cout << "Number of image files: " << numberImgFiles << endl;
-        cout << "Number of open files: " << numberOpenFiles << endl;
+        //cout << "Number of open files: " << numberOpenFiles << endl;
         cout << "Number of commands: " << totalCommands << endl;
         cout << "Storage used: " << totalSpace << endl;
 
