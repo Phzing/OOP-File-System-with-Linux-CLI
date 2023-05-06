@@ -13,6 +13,7 @@
 #include "mockos/RenameParsingStrategy.h"
 #include "mockos/TouchPlusCatParsingStrategy.h"
 #include "mockos/AggregateStatsCommand.h"
+#include "mockos/enums.h"
 
 using namespace std;
 
@@ -53,6 +54,11 @@ int main(int argc, char* argv[]) {
     cmdPrompt->addCommand("rn", renameMacro);
     cmdPrompt->addCommand("touchcat", touchAndCat);
     cmdPrompt->addCommand("as", aggStatsCommand);
-    cmdPrompt->run();
-    return 0;
+    int returnValue = cmdPrompt->run();
+    if (returnValue == QUIT){
+        delete cmdPrompt;
+        delete touchcatParse;
+        delete renamingParse;
+    }
+    return SUCCESS;
 }

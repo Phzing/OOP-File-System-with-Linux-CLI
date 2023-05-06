@@ -20,6 +20,12 @@ CommandPrompt::CommandPrompt() {
     fileFact = nullptr;
 }
 
+CommandPrompt::~CommandPrompt(){
+    for (const auto& command : commands) {
+        delete command.second;
+    }
+}
+
 void CommandPrompt:: setFileSystem(AbstractFileSystem *  afsPtr){ //sets the member file system equal to the one passed in
     fileSys = afsPtr;
 }

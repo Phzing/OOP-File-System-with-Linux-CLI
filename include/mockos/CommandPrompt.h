@@ -22,6 +22,7 @@ class CommandPrompt{
     AbstractFileFactory * fileFact;
 public:
     CommandPrompt();
+    ~CommandPrompt();
     void setFileSystem(AbstractFileSystem *  afsPtr);
     void setFileFactory(AbstractFileFactory * affPtr);
     int addCommand(std::string command, AbstractCommand* acPtr);
