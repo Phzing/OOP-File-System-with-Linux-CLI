@@ -1,4 +1,4 @@
-# Mock OS Studios/Lab
+# Mock OS
 In this project, we'll be creating a static library that
 implements a mock operating system.
 A user of this mock operating system will be able to
